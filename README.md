@@ -1,5 +1,5 @@
 # Errors
-Errors assigned to Colored-Coins servers responses.
+Errors assigned to Colored-Coins servers responses.<br>
 This module allows servers reuse errors, acheiving more comprehensive and readable error responses,
 and more importantly - enables better logging and tracing of errors by client applications or error analysis thanks to well-defined error codes.
 ## Usage
@@ -39,5 +39,21 @@ outputs:
   name: 'InvalidAddressError',
   message: 'Invalid address' }
 ```
+## Development
+### Defining error messages
+Create a very barebones error -- you must specify at least the error `name`, `code` and `defaultMessage`.<br>
+`defaultMessage` should be human readable, short and precise string - by convention with start case style.
+```javascript
+errors.create({name: 'RuntimeError', code: 20001, defaultMessage: 'Runtime Error'});
+console.log(new errors.RuntimeError().toJSON());
+```
+outputs:
+```
+{ code: 20001,
+  name: 'RuntimeError',
+  message: 'Runtime Error' }
+```
+
+
 
 
