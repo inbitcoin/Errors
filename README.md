@@ -18,7 +18,7 @@ console.log(new errors.InvalidAddressError().toJSON())
 ```
 gives us:
 ```
-{ code: 'e10001',
+{ code: 10001,
   status: 422,
   name: 'InvalidAddressError',
   message: 'Invalid address' }
@@ -34,7 +34,7 @@ outputs:
 ```
 { explanation: 'Address 123xyz is not a valid address',
   response: 'Change the argument \'fromAddress\' to be a valid address',
-  code: 'e10001',
+  code: 10001,
   status: 422,
   name: 'InvalidAddressError',
   message: 'Invalid address' }
