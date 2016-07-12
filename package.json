@@ -1,6 +1,6 @@
 {
   "name": "cc-errors",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Errors emitted with Colored-Coins server responses.",
   "main": "index.js",
   "author": "oleiba <oded@colu.com>",
