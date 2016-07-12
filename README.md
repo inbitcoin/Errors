@@ -41,19 +41,41 @@ outputs:
 ```
 ## Development
 ### Defining error messages
-Create a very barebones error -- you must specify at least the error `name`, `code` and `defaultMessage`.<br>
-`defaultMessage` should be human readable, short and precise string - by convention with start case style.
+Create a very barebones error - you must specify at least the error `name` and `code`.<br>
 ```javascript
-errors.create({name: 'RuntimeError', code: 20001, defaultMessage: 'Runtime Error'});
+errors.create({
+  name: 'RuntimeError', // class name
+  code: 20001, // error code
+});
 console.log(new errors.RuntimeError().toJSON());
 ```
 outputs:
 ```
 { code: 20001,
-  name: 'RuntimeError',
-  message: 'Runtime Error' }
+  name: 'RuntimeError'}
 ```
-
+Optionally, define default message, associated HTTP status code, explanation and response:
+```javascript
+// default status, explanation and response 
+errors.create({
+    name: 'FileNotFoundError',
+    code: 30001,
+    status: 500, // associated HTTP status
+    defaultMessage: 'The requested file could not be found', // human readable, short and precise string
+    defaultExplanation: 'The file /home/boden/foo could not be found',  // detailed information
+    defaultResponse: 'Verify the file exists and retry the operation' // suggested action to user
+});
+console.log(new errors.FileNotFoundError().toJSON());
+```
+gives us:
+```
+{ explanation: 'The file /home/boden/foo could not be found',
+  response: 'Verify the file exists and retry the operation',
+  code: 30001,
+  status: 500,
+  name: 'FileNotFoundError',
+  message: 'The requested file could not be found' }
+```
 
 
 
