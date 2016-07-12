@@ -1,8 +1,9 @@
 var gulp = require('gulp')
-var exec = require('child_process').exec
+var errors = require('./index.js')
+var path = require('path')
 
 gulp.task('generate-docs', function (cb) {
-  exec('node lib/docsGenerator.js', cb)
+	errors.generateDocs(errors, path.join(__dirname, 'docs', 'errors.md'))
 })
 
 gulp.task('prepublish', ['generate-docs'])
