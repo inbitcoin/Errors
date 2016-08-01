@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Colored-Coins/Errors.svg?branch=master)](https://travis-ci.org/Colored-Coins/Errors)
+[![Coverage Status](https://coveralls.io/repos/github/Colored-Coins/Errors/badge.svg?branch=master)](https://coveralls.io/github/Colored-Coins/Errors?branch=master)
+[![npm version](https://badge.fury.io/js/Errors.svg)](https://badge.fury.io/js/Errors)
 # Errors
 Errors assigned to Colored-Coins servers responses.<br>
 This module allows servers reuse errors, acheiving more comprehensive and readable error responses,
@@ -39,6 +42,39 @@ outputs:
   name: 'InvalidAddressError',
   message: 'Invalid address' }
 ```
+### Express Middleware
+Express.js error handling middleware.
+
+```javascript
+var errorhandler = require('cc-errors').errorHandler()
+```
+#### errorhandler(options)
+Create new error handling middleware.
+##### options
+###### env
+'development' will include stack trace, and will accumulate original errors<br>
+initiated from third party or separate servers. Default is undefined.
+###### log
+One of two types:<br>
+boolean - a boolean for determining whether the error handler should log the error messages. `true` will use `console.error` by default for logging.<br>
+function - a function to process an error, invoked with `err`.<br>
+Default is `true`.
+
+#### Example
+As with any express error handling middleware, it should be put after the router middleware:
+```javascript
+var express = require('express')
+var app = express()
+var bodyParser = require('body-parser')
+var errorHandler = require('cc-errors').errorHandler
+
+app.use(bodyParser())
+app.get('/error', function (req, res, next) {
+  next('Something went wrong')
+})
+app.use(errorHandler())
+```
+
 ## Development
 ### Defining error messages
 Create a very barebones error - you must specify at least the error `name` and `code`.<br>
@@ -75,6 +111,11 @@ gives us:
   status: 500,
   name: 'FileNotFoundError',
   message: 'The requested file could not be found' }
+```
+### Running the tests
+```
+$ npm install
+$ mocha
 ```
 
 
