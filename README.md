@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Colored-Coins/Errors.svg?branch=master)](https://travis-ci.org/Colored-Coins/Errors)
 [![Coverage Status](https://coveralls.io/repos/github/Colored-Coins/Errors/badge.svg?branch=master)](https://coveralls.io/github/Colored-Coins/Errors?branch=master)
-[![npm version](https://badge.fury.io/js/Errors.svg)](https://badge.fury.io/js/Errors)
+[![npm version](https://badge.fury.io/js/cc-errors.svg)](https://badge.fury.io/js/cc-errors)
 # Errors
 Errors assigned to Colored-Coins servers responses.<br>
 This module allows servers reuse errors, acheiving more comprehensive and readable error responses,
