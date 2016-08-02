@@ -16,6 +16,7 @@
     "prepublish": "gulp prepublish"
   },
   "dependencies": {
+    "debug": "^2.2.0",
     "errors": "^0.3.0",
     "lodash": "^4.14.0"
   },
