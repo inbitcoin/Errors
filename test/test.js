@@ -34,10 +34,10 @@ app.get('/error', function (req, res, next) {
 })
 app.get('/cc_error', function (req, res, next) {
   if (!req.query || req.query.explain !== 'true') {
-    return next(new errors.InvalidAddressError())
+    return next(new errors.ValidationError())
   }
-  next(new errors.InvalidAddressError({
-    explanation: 'This specific address is invalid'
+  next(new errors.ValidationError({
+    explanation: 'The given address is invalid'
   }))
 })
 app.use(dynamicErrorHandler.errorHandler())
@@ -88,14 +88,14 @@ describe('Test error of correct format - production', function () {
   it('Colored-Coins error', function (done) {
     request(app)
 			.get('/cc_error')
-			.expect(422)
+			.expect(400)
 			.end(function (err, res) {
         if (err) return done(err)
 				assert.deepEqual(res.body, {
-          name: 'InvalidAddressError',
-          code: 10001,
-          status: 422,
-          message: 'Invalid address'
+          name: 'ValidationError',
+          code: 10000,
+          status: 400,
+          message: 'Validation error'
 				})
 				done()
 			})
@@ -104,15 +104,15 @@ describe('Test error of correct format - production', function () {
 	it('Colored-Coins error, with explanation', function (done) {
     request(app)
 			.get('/cc_error?explain=true')
-			.expect(422)
+			.expect(400)
 			.end(function (err, res) {
 				if (err) return done(err)
 				assert.deepEqual(res.body, {
-					name: 'InvalidAddressError',
-					code: 10001,
-					status: 422,
-					explanation: 'This specific address is invalid',
-					message: 'Invalid address'
+					name: 'ValidationError',
+					code: 10000,
+					status: 400,
+					explanation: 'The given address is invalid',
+					message: 'Validation error'
 				})
 				done()
 			})
@@ -167,13 +167,13 @@ describe('Test error of correct format - development', function () {
 	it('Colored-Coins error', function (done) {
     request(app)
 			.get('/cc_error')
-			.expect(422)
+			.expect(400)
 			.end(function (err, res) {
 				if (err) return done(err)
-				assert.equal(res.body.status, 422)
-				assert.equal(res.body.name, 'InvalidAddressError')
-				assert.equal(res.body.code, 10001)
-				assert.equal(res.body.message, 'Invalid address')
+				assert.equal(res.body.status, 400)
+				assert.equal(res.body.name, 'ValidationError')
+				assert.equal(res.body.code, 10000)
+				assert.equal(res.body.message, 'Validation error')
 				assert.notEqual(res.body.stack, undefined)
 				done()
 			})
@@ -182,15 +182,14 @@ describe('Test error of correct format - development', function () {
 	it('Colored-Coins error with explanation', function (done) {
     request(app)
 			.get('/cc_error?explain=true')
-			.expect(422)
+			.expect(400)
 			.end(function (err, res) {
 				if (err) return done(err)
-				assert.equal(res.body.status, 422)
-				assert.equal(res.body.name, 'InvalidAddressError')
-				assert.equal(res.body.code, 10001)
-				assert.equal(res.body.message, 'Invalid address')
-				assert.equal(res.body.message, 'Invalid address')
-				assert.equal(res.body.explanation, 'This specific address is invalid')
+				assert.equal(res.body.status, 400)
+				assert.equal(res.body.name, 'ValidationError')
+				assert.equal(res.body.code, 10000)
+				assert.equal(res.body.message, 'Validation error')
+				assert.equal(res.body.explanation, 'The given address is invalid')
 				assert.notEqual(res.body.stack, undefined)
 				done()
 			})
@@ -200,15 +199,14 @@ describe('Test error of correct format - development', function () {
     dynamicRequestIdMiddleware.replace(requestIdMiddleware)
     request(app)
       .get('/cc_error?explain=true')
-      .expect(422)
+      .expect(400)
       .end(function (err, res) {
         if (err) return done(err)
-        assert.equal(res.body.status, 422)
-        assert.equal(res.body.name, 'InvalidAddressError')
-        assert.equal(res.body.code, 10001)
-        assert.equal(res.body.message, 'Invalid address')
-        assert.equal(res.body.message, 'Invalid address')
-        assert.equal(res.body.explanation, 'This specific address is invalid')
+        assert.equal(res.body.status, 400)
+        assert.equal(res.body.name, 'ValidationError')
+        assert.equal(res.body.code, 10000)
+        assert.equal(res.body.message, 'Validation error')
+        assert.equal(res.body.explanation, 'The given address is invalid')
         assert.equal(res.body.requestId, 'request-id-1234')
         assert.equal(res.body.correlationId, 'correlation-id-1234')
         assert.equal(res.body.remoteId, 'remote-id-1234')
@@ -221,15 +219,14 @@ describe('Test error of correct format - development', function () {
     dynamicRequestIdMiddleware.replace(requestIdMiddleware)
     request(app)
       .get('/cc_error?explain=true')
-      .expect(422)
+      .expect(400)
       .end(function (err, res) {
         if (err) return done(err)
-        assert.equal(res.body.status, 422)
-        assert.equal(res.body.name, 'InvalidAddressError')
-        assert.equal(res.body.code, 10001)
-        assert.equal(res.body.message, 'Invalid address')
-        assert.equal(res.body.message, 'Invalid address')
-        assert.equal(res.body.explanation, 'This specific address is invalid')
+        assert.equal(res.body.status, 400)
+        assert.equal(res.body.name, 'ValidationError')
+        assert.equal(res.body.code, 10000)
+        assert.equal(res.body.message, 'Validation error')
+        assert.equal(res.body.explanation, 'The given address is invalid')
         assert.equal(res.body.requestId, 'request-id-1234')
         assert.equal(res.body.correlationId, 'correlation-id-1234')
         assert.equal(res.body.remoteId, 'remote-id-1234')
