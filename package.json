@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "errors": "^0.3.0",
+    "errors": "git+https://github.com/Colored-Coins/errors-base.git",
     "lodash": "^4.14.0"
   },
   "devDependencies": {
