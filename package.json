@@ -23,16 +23,12 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "markdown-table": "^0.4.0",
-    "async": "^2.0.1",
     "body-parser": "^1.15.2",
-    "cc-request-id": "0.0.2",
     "chai": "^3.0.0",
     "dynamic-middleware": "https://github.com/Colored-Coins/node-dynamic-middleware.git#error_handler",
     "express": "^4.14.0",
     "istanbul": "^0.3.22",
     "mocha": "^2.5.3",
-    "portfinder": "^1.0.5",
-    "request": "^2.74.0",
     "supertest": "^1.2.0"
   }
 }
