@@ -13,11 +13,12 @@ var requestIdMiddleware = function (req, res, next) {
   req.headers['X-Request-Id'] = 'request-id-1234'
   next()
 }
+var dynamicRequestIdMiddleware = new DynamicMiddleware(placeHolderMiddleware)
 var errorHandlerProduction = errorHandler() // default, unless explicitly process.env.NODE_ENV = 'development'
 var errorHandlerDevelopment = errorHandler({env: 'development'})
 var dynamicErrorHandler = new DynamicMiddleware(errorHandlerProduction)
 
-app.use(requestIdMiddleware)
+app.use(dynamicRequestIdMiddleware.handler())
 app.use(bodyParser.json())
 app.get('/string_error', function (req, res, next) {
   next('Some Error')
@@ -192,6 +193,7 @@ describe('Test error of correct format - development', function () {
 	})
 
   it('Colored-Coins error with request-id', function (done) {
+    dynamicRequestIdMiddleware.replace(requestIdMiddleware)
     request(app)
       .get('/cc_error?explain=true')
       .expect(400)
