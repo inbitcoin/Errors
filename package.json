@@ -1,13 +1,16 @@
 {
-  "name": "cc-errors",
-  "version": "0.1.1",
+  "name": "@inbitcoin/cerrors",
+  "version": "0.1.4",
   "description": "Errors emitted with Colored-Coins server responses.",
   "main": "index.js",
   "author": "oleiba <oded@colu.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Colored-Coins/Errors.git"
+    "url": "https://github.com/inbitcoin/cerrors.git"
+  },
+  "publishConfig": {
+    "registry": "https://browny.inbitcoin.it"
   },
   "scripts": {
     "test": "mocha",
@@ -17,7 +20,7 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "errors": "git+https://github.com/Colored-Coins/errors-base.git",
+    "errors": "git+https://github.com/inbitcoin/errors-base.git#43512dc",
     "lodash": "^4.14.0"
   },
   "devDependencies": {
@@ -25,7 +28,7 @@
     "markdown-table": "^0.4.0",
     "body-parser": "^1.15.2",
     "chai": "^3.0.0",
-    "dynamic-middleware": "https://github.com/Colored-Coins/node-dynamic-middleware.git#error_handler",
+    "dynamic-middleware": "https://github.com/inbitcoin/node-dynamic-middleware.git#error_handler",
     "express": "^4.14.0",
     "istanbul": "^0.3.22",
     "mocha": "^2.5.3",
