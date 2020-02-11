@@ -1,6 +1,6 @@
 {
   "name": "@inbitcoin/cerrors",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Errors emitted with Colored Coins server responses.",
   "main": "index.js",
   "author": "oleiba <oded@colu.com>",
