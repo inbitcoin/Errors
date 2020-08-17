@@ -13,10 +13,10 @@ var requestIdMiddleware = function (req, res, next) {
   req.headers['X-Request-Id'] = 'request-id-1234'
   next()
 }
-var dynamicRequestIdMiddleware = new DynamicMiddleware(placeHolderMiddleware)
+var dynamicRequestIdMiddleware = DynamicMiddleware.create(placeHolderMiddleware)
 var errorHandlerProduction = errorHandler() // default, unless explicitly process.env.NODE_ENV = 'development'
 var errorHandlerDevelopment = errorHandler({env: 'development'})
-var dynamicErrorHandler = new DynamicMiddleware(errorHandlerProduction)
+var dynamicErrorHandler = DynamicMiddleware.create(errorHandlerProduction)
 
 app.use(dynamicRequestIdMiddleware.handler())
 app.use(bodyParser.json())
