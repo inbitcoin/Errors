@@ -20,7 +20,7 @@
     "lint-fix": "eslint --ignore-path .gitignore --fix ."
   },
   "dependencies": {
-    "debug": "^2.2.0",
+    "debug": "^4.1.1",
     "errors": "git+https://github.com/inbitcoin/errors-base.git#43512dc",
     "lodash": "^4.14.0"
   },
