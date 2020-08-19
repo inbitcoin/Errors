@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "errors": "git+https://github.com/inbitcoin/errors-base.git#43512dc",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
