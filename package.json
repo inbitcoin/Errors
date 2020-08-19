@@ -15,7 +15,6 @@
   "scripts": {
     "test": "mocha",
     "coverage": "istanbul cover _mocha -- -R spec",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "eslint --ignore-path .gitignore --fix ."
   },
@@ -25,8 +24,10 @@
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
+    "coverage": "^0.4.1",
     "dynamic-middleware": "4.0.2",
     "express": "^4.17.1",
+    "istanbul": "^0.4.5",
     "mocha": "^8.1.1",
     "supertest": "^4.0.2",
     "babel-eslint": "^10.1.0",

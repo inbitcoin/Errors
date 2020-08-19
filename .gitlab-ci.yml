@@ -28,4 +28,4 @@ test:
       - develop
       - merge_request
   script:
-    - npm test
+    - npm run coverage  # this also executes tests (npm test)
